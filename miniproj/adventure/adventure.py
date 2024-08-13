@@ -1,3 +1,4 @@
+# setting the stage, creating the rooms (might change)
 rooms = {
     'living_room':{
         'description': 'You are in the livingroom of an abandoned house, there is a hall to the west and locked door to the east', 
@@ -23,3 +24,23 @@ rooms = {
             'item': 'key'
     }
 }
+
+# game logic
+current_room = 'living_room'
+inventory = []
+
+# something to display inventory/room
+def status():
+    print("-------------------------------")
+    print(rooms[current_room]['description'])
+    
+    # Had an issue where i used double quotes around exits, fixed by replacing with single quotes
+    # quotes for actual print msg and inner quotes cannot be the same
+    print(f'Exits: {",".join(rooms[current_room]["exits"].keys())}')
+    if rooms[current_room]['item']:
+        print(f"You see a {rooms[current_room]['item']} here.")
+        print(f"Inventory: {'inventory'}")
+    print("-------------------------------")
+
+status()
+

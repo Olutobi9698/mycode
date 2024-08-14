@@ -44,3 +44,15 @@ def status():
 
 status()
 
+# updates current players position
+def move(direction):
+    # tried to use current room without making it global. you cannot do this 
+    # you need to grab the "original" variable
+    global current_room
+    exits = rooms[current_room]['exits']
+
+    if direction in exists:
+        current_room = exits[direction]
+    else:
+        print("you can't go that way")
+

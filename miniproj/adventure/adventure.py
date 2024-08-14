@@ -39,7 +39,6 @@ def status():
     print(f'Exits: {"|".join(rooms[current_room]["exits"].keys())}')
     if rooms[current_room]['item']:
         print(f"You see a {rooms[current_room]['item']} here.")
-        print(f"Inventory: {'inventory'}")
     print("-------------------------------")
 
 # updates current players position

@@ -36,13 +36,11 @@ def status():
     
     # Had an issue where i used double quotes around exits, fixed by replacing with single quotes
     # quotes for actual print msg and inner quotes cannot be the same
-    print(f'Exits: {",".join(rooms[current_room]["exits"].keys())}')
+    print(f'Exits: {"|".join(rooms[current_room]["exits"].keys())}')
     if rooms[current_room]['item']:
         print(f"You see a {rooms[current_room]['item']} here.")
         print(f"Inventory: {'inventory'}")
     print("-------------------------------")
-
-status()
 
 # updates current players position
 def move(direction):
@@ -51,8 +49,28 @@ def move(direction):
     global current_room
     exits = rooms[current_room]['exits']
 
-    if direction in exists:
+    if direction in exits:     # accedentally typed exists lol was stuck for a good 30 mins
         current_room = exits[direction]
     else:
         print("you can't go that way")
 
+def game_loop():
+    print("~~Welcome to the Adventure Game!~~")
+    print('----------------------------------')
+    print('How to play:')
+    print("------------")
+    print('* Enter: "north", "south", "east", or "west" from available exits to advance')
+    print('* Enter: "quit" at any time to quit the game')
+
+    #another example of using different outter/inner quote
+    while True:
+        status()
+
+        direction = input("Which direction do you want to go?\n> ").lower() # stole this ">" from chadgpt
+        
+        if direction == 'quit':
+            print("Thanks for playing!")
+            break
+        move(direction)
+
+game_loop()

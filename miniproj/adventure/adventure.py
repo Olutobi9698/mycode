@@ -17,14 +17,13 @@ rooms = {
             'item': None
     },
     'bedroom':{
-        'description': 'you are in a bedroom, you see a shiny key on the bed',
+        'description': 'you are in a bedroom',
         'exits': {
             'east': 'hall'
         }, 
             'item': 'key'
     }
 }
-
 # game logic
 current_room = 'living_room'
 inventory = []
@@ -38,7 +37,8 @@ def status():
     # quotes for actual print msg and inner quotes cannot be the same
     print(f'Exits: {"|".join(rooms[current_room]["exits"].keys())}')
     if rooms[current_room]['item']:
-        print(f"You see a {rooms[current_room]['item']} here.")
+        print(f"A {rooms[current_room]['item']} has been added to your inventory.")
+        inventory.append(rooms[current_room]['item'])
     print("-------------------------------")
 
 # updates current players position
@@ -48,8 +48,10 @@ def move(direction):
     global current_room
     exits = rooms[current_room]['exits']
 
-    if direction in exits:     # accedentally typed exists lol was stuck for a good 30 mins
+    if direction in exits:     # accedentally typed exists was stuck for a good 30 mins
         current_room = exits[direction]
+    elif direction == 'inventory':
+            print(f'Inventory: {inventory}')
     else:
         print("you can't go that way")
 
